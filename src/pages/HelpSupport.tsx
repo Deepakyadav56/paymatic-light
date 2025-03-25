@@ -29,7 +29,7 @@ const faqItems = [
   },
   {
     question: 'How can I recover my account if I forget my PIN?',
-    answer: 'Go to the login screen and click on "Forgot PIN". You'll receive an OTP on your registered mobile number to reset your PIN.'
+    answer: 'Go to the login screen and click on "Forgot PIN". You\'ll receive an OTP on your registered mobile number to reset your PIN.'
   },
 ];
 
