@@ -4,10 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ArrowRight, CreditCard, BarChart4, QrCode } from 'lucide-react';
 import Button from '@/components/Button';
 import Logo from '@/components/Logo';
+import { cn } from '@/lib/utils';
 
 const Onboarding: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
+  
+  // Define Send variable before using it
+  const Send = CreditCard;
   
   const slides = [
     {
@@ -53,8 +57,6 @@ const Onboarding: React.FC = () => {
   const handleSkip = () => {
     navigate('/login');
   };
-  
-  const Send = CreditCard;
   
   return (
     <div className={`min-h-screen flex flex-col relative bg-gradient-to-b ${slides[currentSlide].gradient} p-6`}>
