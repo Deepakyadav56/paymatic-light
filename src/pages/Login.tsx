@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Phone, Fingerprint } from 'lucide-react';
+import { Phone, Fingerprint, User, User2, UserPlus2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import Logo from '@/components/Logo';
 import Button from '@/components/Button';
@@ -79,6 +79,12 @@ const Login: React.FC = () => {
       description: "Fingerprint authentication requested"
     });
   };
+
+
+  const navigateToSignUp = () => {
+    navigate('/signup');
+
+  };
   
   return (
     <div className="min-h-screen flex flex-col bg-white p-6">
@@ -97,15 +103,15 @@ const Login: React.FC = () => {
           >
             Login
           </button>
-          <button
+          {/* <button
             className={cn(
               'flex-1 text-center py-3 font-medium',
               activeTab === 'signup' ? 'text-teal-500 border-b-2 border-teal-500' : 'text-dark-400'
             )}
             onClick={() => setActiveTab('signup')}
           >
-            Signup
-          </button>
+            Signupppp
+          </button> */}
         </div>
       </div>
       
@@ -138,14 +144,16 @@ const Login: React.FC = () => {
                 <div className="h-px bg-gray-200 flex-1"></div>
               </div>
               
+             
+              
               <Button
                 variant="outline"
                 fullWidth
-                icon={<Fingerprint size={18} />}
-                onClick={handleFingerprint}
+                icon={<UserPlus2 size={18} />}
+                onClick={navigateToSignUp}
                 className="mt-6"
               >
-                Use Fingerprint
+                SignUp
               </Button>
             </>
           ) : (

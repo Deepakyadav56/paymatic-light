@@ -31,6 +31,7 @@ import NotificationSettings from "./pages/NotificationSettings";
 import QuickAccess from "./pages/QuickAccess";
 import HelpSupport from "./pages/HelpSupport";
 import NotFound from "./pages/NotFound";
+import Signup from "./pages/Signup";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,8 @@ const App = () => (
           <Route path="/" element={<SplashScreen />} />
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+
           <Route path="/verify-otp" element={<VerifyOTP />} />
           <Route path="/home" element={<Home />} />
           <Route path="/send" element={<SendMoney />} />
