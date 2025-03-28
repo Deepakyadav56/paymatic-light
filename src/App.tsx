@@ -32,6 +32,11 @@ import QuickAccess from "./pages/QuickAccess";
 import HelpSupport from "./pages/HelpSupport";
 import NotFound from "./pages/NotFound";
 import Signup from "./pages/Signup";
+import MutualFundsPage from "./pages/MutualFunds";
+import FundDetailsPage from "./pages/FundDetailsPage";
+import InvestmentAmtPage from "./pages/InvestmentAmt";
+import PaymentPage from "./pages/Payment";
+import ConfirmationPage from "./pages/Confirmation";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +51,13 @@ const App = () => (
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+
+          <Route path="/mutual-funds" element={<MutualFundsPage />} />
+          <Route path="/fund-details/:id" element={<FundDetailsPage />} />
+          <Route path="/invest/:id" element={<InvestmentAmtPage />} />
+          <Route path="/payment/:id" element={<PaymentPage />} />
+          <Route path="/confirmation/:id" element={<ConfirmationPage />} />
+          
 
           <Route path="/verify-otp" element={<VerifyOTP />} />
           <Route path="/home" element={<Home />} />
