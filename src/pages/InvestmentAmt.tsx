@@ -186,7 +186,7 @@ const InvestmentAmtPage = () => {
               key={preset}
               className={`px-3 py-1 text-sm rounded-full ${
                 amount === preset.toString() 
-                  ? 'bg-payx-teal text-white' 
+                  ? 'bg-teal text-white' 
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
               onClick={() => setAmount(preset.toString())}
