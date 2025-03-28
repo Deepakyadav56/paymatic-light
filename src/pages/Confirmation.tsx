@@ -106,7 +106,7 @@ const ConfirmationPage = () => {
       {/* Action Buttons */}
       <div className="flex flex-col gap-3">
         <Button 
-          className="w-full bg-payx-teal hover:bg-teal-600 text-white"
+          className="w-full  hover:bg-teal-600 text-white"
           onClick={() => navigate('/mutual-funds')}
         >
           Explore More Funds

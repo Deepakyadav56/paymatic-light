@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Send, QrCode, CreditCard, User } from 'lucide-react';
+import { Home, Send, QrCode, CreditCard, User, CandlestickChart } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const NavBar: React.FC = () => {
@@ -12,7 +12,9 @@ const NavBar: React.FC = () => {
     { icon: Home, label: 'Home', path: '/home' },
     { icon: Send, label: 'Send', path: '/send' },
     { icon: QrCode, label: 'Scan', path: '/scan' },
-    { icon: CreditCard, label: 'Payments', path: '/payments' },
+    { icon: CreditCard , label: 'Payments', path: '/payments' },
+    { icon: CandlestickChart, label: 'Mutual Funds', path: '/mutual-funds' },
+
     { icon: User, label: 'Profile', path: '/profile' },
   ];
   

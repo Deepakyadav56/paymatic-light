@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import GlassCard from '@/components/ui-elements/GlassCard';
+import NavBar from '@/components/NavBar';
 
 // Sample mutual fund data (same as from the previous component)
 const mutualFundsData = [
@@ -213,13 +214,15 @@ const InvestmentAmtPage = () => {
         )}
 
         <Button 
-          className="w-full bg-payx-teal hover:bg-teal-600 text-white"
+          className="w-full  hover:bg-teal-600 text-white"
           onClick={handleProceed}
           disabled={parseFloat(amount) < fund.minInvestment}
         >
           Proceed to Payment
         </Button>
       </GlassCard>
+      <NavBar/>
+
     </div>
   );
 };

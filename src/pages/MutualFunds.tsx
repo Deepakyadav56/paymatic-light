@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import GlassCard from '@/components/ui-elements/GlassCard';
 import { useNavigate } from 'react-router-dom';
+import NavBar from '@/components/NavBar';
 
 // Sample mutual fund data
 const mutualFundsData = [
@@ -183,6 +184,8 @@ const MutualFundsPage = () => {
           </Card>
         )}
       </div>
+      <NavBar />
+
     </div>
   );
 };

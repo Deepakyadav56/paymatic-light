@@ -7,6 +7,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import GlassCard from '@/components/ui-elements/GlassCard';
 import { useToast } from '@/hooks/use-toast';
+import NavBar from '@/components/NavBar';
 
 const paymentMethods = [
   { id: 'upi', name: 'UPI', icon: <Smartphone className="h-5 w-5 text-purple-500" /> },
@@ -152,12 +153,14 @@ const PaymentPage = () => {
 
       {/* Payment Button */}
       <Button 
-        className="w-full bg-payx-teal hover:bg-teal-600 text-white h-12 text-base"
+        className="w-full  hover:bg-teal-600 text-white h-12 text-base"
         onClick={handlePayment}
         disabled={isProcessing}
       >
         {isProcessing ? 'Processing...' : `Pay ₹${amount.toLocaleString()}`}
       </Button>
+      <NavBar/>
+
     </div>
   );
 };
