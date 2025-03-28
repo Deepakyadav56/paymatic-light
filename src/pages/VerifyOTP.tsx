@@ -92,7 +92,7 @@ const VerifyOTP: React.FC = () => {
           </h1>
           
           <p className="text-center text-dark-600 mb-8">
-            We've sent a verification code to <span className="font-medium">{phone}</span>
+            We've sent a verification code to <span className="font-medium">+91 {phone}</span>
           </p>
           
           <div className="flex justify-between mb-8">

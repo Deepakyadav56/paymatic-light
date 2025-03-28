@@ -86,7 +86,7 @@ const Home: React.FC = () => {
           </button>
         </div>
         
-        <h1 className="text-xl font-medium text-dark-900">Hello, Jane 👋</h1>
+        <h1 className="text-xl font-medium text-dark-900">Hello, John 👋</h1>
         
         <div className="mt-6 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl p-5 text-white">
           <p className="text-teal-100 mb-1">Available Balance</p>

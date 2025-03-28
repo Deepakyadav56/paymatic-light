@@ -20,7 +20,7 @@ const Login: React.FC = () => {
   const { toast } = useToast();
   
   const handleSendOTP = () => {
-    if (!phone || phone.length < 10) {
+    if (!phone || phone.length < 10 || phone.length > 10) {
       toast({
         title: "Invalid phone number",
         description: "Please enter a valid phone number",
@@ -47,9 +47,9 @@ const Login: React.FC = () => {
       return;
     }
     
-    if (phone.length < 10) {
+    if (phone.length < 10 || phone.length > 10) {
       toast({
-        title: "Invalid phone number",
+        title: "Invalid phone numberrrr",
         description: "Please enter a valid phone number",
         variant: "destructive"
       });
@@ -121,6 +121,9 @@ const Login: React.FC = () => {
             <>
               <Input
                 label="Phone Number"
+                maxLength={10}
+                minLength={10}
+
                 placeholder="Enter your phone number"
                 icon={<Phone size={18} />}
                 type="tel"
