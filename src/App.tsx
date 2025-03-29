@@ -38,6 +38,11 @@ import InvestmentAmtPage from "./pages/InvestmentAmt";
 import PaymentPage from "./pages/Payment";
 import ConfirmationPage from "./pages/Confirmation";
 
+// New screens
+import PortfolioDashboard from "./pages/PortfolioDashboard";
+import SIPDashboard from "./pages/SIPDashboard";
+import TaxPlanning from "./pages/TaxPlanning";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -58,6 +63,10 @@ const App = () => (
           <Route path="/payment/:id" element={<PaymentPage />} />
           <Route path="/confirmation/:id" element={<ConfirmationPage />} />
           
+          {/* New routes */}
+          <Route path="/portfolio" element={<PortfolioDashboard />} />
+          <Route path="/sip-dashboard" element={<SIPDashboard />} />
+          <Route path="/tax-planning" element={<TaxPlanning />} />
 
           <Route path="/verify-otp" element={<VerifyOTP />} />
           <Route path="/home" element={<Home />} />
