@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ArrowRight, CreditCard, BarChart4, QrCode } from 'lucide-react';
@@ -9,7 +10,6 @@ const Onboarding: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
   
-  // Define Send variable before using it
   const Send = CreditCard;
   
   const slides = [
@@ -58,28 +58,28 @@ const Onboarding: React.FC = () => {
   };
   
   return (
-    <div className={`min-h-screen flex flex-col relative bg-gradient-to-b ${slides[currentSlide].gradient} p-6`}>
+    <div className={`min-h-screen flex flex-col relative bg-gradient-to-b ${slides[currentSlide].gradient} p-6 items-center justify-center`}>
       <div className="absolute top-6 right-6">
-        {currentSlide < slides.length - 1 ? (
+        {currentSlide < slides.length - 1 && (
           <Button variant="ghost" onClick={handleSkip}>
             Skip
           </Button>
-        ) : null}
+        )}
       </div>
       
-      <div className="flex-1 flex flex-col items-center justify-center">
-        <div className="max-w-xs w-full animate-fade-in">
+      <div className="flex-1 flex flex-col items-center justify-center w-full max-w-md">
+        <div className="w-full animate-fade-in text-center">
           {currentSlide === 0 ? (
             <Logo size="lg" className="mb-8 mx-auto" />
           ) : (
-            slides[currentSlide].icon
+            <div className="flex justify-center">{slides[currentSlide].icon}</div>
           )}
           
-          <h1 className="text-3xl font-display font-bold text-dark-900 text-center mb-4">
+          <h1 className="text-3xl font-display font-bold text-dark-900 mb-4">
             {slides[currentSlide].title}
           </h1>
           
-          <p className="text-center text-dark-600 mb-8">
+          <p className="text-center text-dark-600 mb-8 px-4">
             {slides[currentSlide].description}
           </p>
           
@@ -97,7 +97,7 @@ const Onboarding: React.FC = () => {
         </div>
       </div>
       
-      <div className="flex justify-between w-full max-w-xs mx-auto">
+      <div className="flex justify-between w-full max-w-md">
         {currentSlide > 0 ? (
           <Button
             variant="outline"
