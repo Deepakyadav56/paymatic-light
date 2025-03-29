@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Calculator, InfoIcon, HelpCircleIcon } from 'lucide-react';
+import { ArrowLeft, Calculator, InfoIcon, HelpCircleIcon, TrendingUp, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -92,9 +93,9 @@ const InvestmentAmtPage = () => {
     : [500, 1000, 2500, 5000];
 
   return (
-    <div className="container max-w-3xl mx-auto p-4 animate-fade-in">
+    <div className="container max-w-3xl mx-auto p-4 animate-fade-in bg-gray-50 min-h-screen">
       {/* Header */}
-      <div className="flex items-center mb-4">
+      <div className="flex items-center mb-6 bg-white p-4 rounded-xl shadow-sm">
         <Button 
           variant="ghost" 
           className="p-2" 
@@ -106,26 +107,35 @@ const InvestmentAmtPage = () => {
       </div>
 
       {/* Fund Summary */}
-      <GlassCard className="mb-4">
-        <h2 className="text-lg font-semibold mb-1">{fund.name}</h2>
-        <p className="text-sm text-gray-500">{fund.category}</p>
+      <GlassCard className="mb-6 p-5">
+        <div className="flex justify-between items-center">
+          <div>
+            <h2 className="text-lg font-semibold mb-1 text-gray-800">{fund.name}</h2>
+            <p className="text-sm text-gray-500">{fund.category}</p>
+          </div>
+          <div className="flex items-center bg-green-50 px-3 py-1 rounded-full">
+            <TrendingUp className="h-4 w-4 text-green-600 mr-1" />
+            <span className="text-green-600 font-medium text-sm">{fund.returns}%</span>
+          </div>
+        </div>
       </GlassCard>
 
       {/* Investment Type Selection */}
-      <div className="mb-4">
+      <div className="mb-6">
+        <p className="text-sm font-medium text-gray-600 mb-3">Choose Investment Type</p>
         <RadioGroup 
           value={investmentType} 
           onValueChange={(value) => setInvestmentType(value as 'onetime' | 'sip')}
           className="flex gap-4"
         >
-          <div className={`flex-1 p-4 border rounded-lg cursor-pointer ${investmentType === 'onetime' ? 'border-payx-teal bg-teal-50' : 'border-gray-200'}`}>
+          <div className={`flex-1 p-4 border rounded-xl cursor-pointer transition-all ${investmentType === 'onetime' ? 'border-teal-400 bg-teal-50 shadow-sm' : 'border-gray-200 bg-white'}`}>
             <RadioGroupItem value="onetime" id="onetime" className="hidden" />
             <Label htmlFor="onetime" className="flex flex-col items-center cursor-pointer">
               <span className="font-medium mb-1">One-time</span>
               <span className="text-xs text-gray-500">Lump sum investment</span>
             </Label>
           </div>
-          <div className={`flex-1 p-4 border rounded-lg cursor-pointer ${investmentType === 'sip' ? 'border-payx-teal bg-teal-50' : 'border-gray-200'}`}>
+          <div className={`flex-1 p-4 border rounded-xl cursor-pointer transition-all ${investmentType === 'sip' ? 'border-teal-400 bg-teal-50 shadow-sm' : 'border-gray-200 bg-white'}`}>
             <RadioGroupItem value="sip" id="sip" className="hidden" />
             <Label htmlFor="sip" className="flex flex-col items-center cursor-pointer">
               <span className="font-medium mb-1">SIP</span>
@@ -136,9 +146,9 @@ const InvestmentAmtPage = () => {
       </div>
 
       {/* Amount Input */}
-      <GlassCard className="mb-4">
-        <div className="mb-4">
-          <Label htmlFor="amount" className="text-sm text-gray-600 mb-1 flex items-center">
+      <GlassCard className="mb-6 p-5">
+        <div className="mb-5">
+          <Label htmlFor="amount" className="text-sm font-medium text-gray-600 mb-2 flex items-center">
             Enter {investmentType === 'onetime' ? 'Investment' : 'Monthly'} Amount
             <Dialog>
               <DialogTrigger asChild>
@@ -146,13 +156,17 @@ const InvestmentAmtPage = () => {
                   <HelpCircleIcon className="h-4 w-4 text-gray-400" />
                 </Button>
               </DialogTrigger>
-              <DialogContent>
+              <DialogContent className="sm:max-w-md">
                 <DialogHeader>
                   <DialogTitle>Investment Information</DialogTitle>
                 </DialogHeader>
-                <div className="text-sm">
-                  <p className="mb-2">Minimum investment amount: ₹{fund.minInvestment}</p>
-                  <p className="mb-2">
+                <div className="text-sm space-y-2">
+                  <p className="flex items-center text-gray-700">
+                    <span className="inline-block w-3 h-3 bg-teal-400 rounded-full mr-2"></span>
+                    Minimum investment amount: ₹{fund.minInvestment}
+                  </p>
+                  <p className="flex items-center text-gray-700">
+                    <span className="inline-block w-3 h-3 bg-teal-400 rounded-full mr-2"></span>
                     {investmentType === 'onetime' 
                       ? 'A one-time investment allows you to invest a lump sum amount once.'
                       : 'A SIP (Systematic Investment Plan) allows you to invest a fixed amount monthly.'}
@@ -162,31 +176,32 @@ const InvestmentAmtPage = () => {
             </Dialog>
           </Label>
           <div className="relative">
-            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">₹</span>
+            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">₹</span>
             <Input
               id="amount"
               type="number"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className="pl-7"
+              className="pl-7 h-12 text-lg font-medium border-gray-200 focus:border-teal-400 rounded-xl"
               min={fund.minInvestment}
             />
           </div>
           {parseFloat(amount) < fund.minInvestment && (
-            <p className="text-red-500 text-xs mt-1">
+            <p className="text-red-500 text-xs mt-1 flex items-center">
+              <span className="inline-block w-2 h-2 bg-red-500 rounded-full mr-1"></span>
               Minimum investment is ₹{fund.minInvestment}
             </p>
           )}
         </div>
 
         {/* Preset Amounts */}
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-2 mb-5">
           {presetAmounts.map((preset) => (
             <button
               key={preset}
-              className={`px-3 py-1 text-sm rounded-full ${
+              className={`px-4 py-2 text-sm rounded-xl transition-all ${
                 amount === preset.toString() 
-                  ? 'bg-teal text-white' 
+                  ? 'bg-teal-500 text-white shadow-sm' 
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
               onClick={() => setAmount(preset.toString())}
@@ -198,7 +213,7 @@ const InvestmentAmtPage = () => {
 
         {/* Expected Returns */}
         {expectedReturns !== null && (
-          <div className="bg-green-50 p-3 rounded-lg mb-4">
+          <div className="bg-green-50 p-4 rounded-xl mb-5">
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-sm font-medium text-gray-700">Expected Returns (1Y)</h3>
@@ -206,7 +221,7 @@ const InvestmentAmtPage = () => {
                   Based on historical performance of {fund.returns}%
                 </p>
               </div>
-              <div className="text-green-600 font-semibold">
+              <div className="text-green-600 font-semibold text-lg">
                 +₹{Math.abs(expectedReturns).toLocaleString()}
               </div>
             </div>
@@ -214,15 +229,28 @@ const InvestmentAmtPage = () => {
         )}
 
         <Button 
-          className="w-full  hover:bg-teal-600 text-white"
+          className="w-full rounded-xl py-6 hover:bg-teal-600 text-white font-medium text-base flex items-center justify-center"
           onClick={handleProceed}
           disabled={parseFloat(amount) < fund.minInvestment}
         >
           Proceed to Payment
+          <ArrowRight className="ml-2 h-5 w-5" />
         </Button>
       </GlassCard>
+      
+      {/* Additional Info */}
+      <div className="text-xs text-gray-500 px-2">
+        <p className="flex items-start mb-2">
+          <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mr-2 mt-1"></span>
+          Investments in mutual funds are subject to market risks. Read all scheme related documents carefully.
+        </p>
+        <p className="flex items-start">
+          <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mr-2 mt-1"></span>
+          Past performance is not indicative of future returns.
+        </p>
+      </div>
+      
       <NavBar/>
-
     </div>
   );
 };
